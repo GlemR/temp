@@ -32,6 +32,9 @@ public:
     bool resta=false;
     unsigned int solution_length = 8;
     char solution[9] = "15A63*C2"; // null-terminated automatically
+
+    // caharcters used in the keypad
+    // to be fixed
     char keys[4][4] = {
         {'1', '2', '3', 'A'},
         {'4', '5', '6', 'B'},
@@ -41,6 +44,7 @@ public:
     byte colPins[4] = {6, 7, 8, 9}; 
     byte rowPins[4] = {5, 4, 3, 2};
     Keypad keypadObj = Keypad(makeKeymap(keys), rowPins, colPins, 4, 4);
+    // up to this it's getting declared twice but it works so it's ok for now
     Passwords();
     Passwords(unsigned int difficulty,
         // byte rowPins[],

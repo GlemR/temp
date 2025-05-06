@@ -23,7 +23,7 @@ Passwords::Passwords(unsigned int difficulty,
         lcd2.setCursor(i, 0);        
         lcd2.write(this->solution[i]);
     }
-
+    // here again the keypad is getting declared twice but it works so it's ok for now
     char keys[4][4] = {
         {'1', '2', '3', 'A'},
         {'4', '5', '6', 'B'},
@@ -45,7 +45,7 @@ void Passwords::tick(){
     if (solved)
     return;
 
-    if(!waiting)
+    if(!waiting) // creating small delay to avoid any noise
     {
     char key = keypadObj.getKey();
     if (key)
@@ -67,9 +67,6 @@ void Passwords::tick(){
 if (waiting && (millis() - lastKeyTime >= keyCooldown)) {
     waiting = false;
     Serial.write("reset\n");
-    // delete keypadObj;
-    // delay(5);  // optional safety delay
-    // keypadObj = new Keypad(makeKeymap(this->keys), this->rowPins, this->colPins, 4, 4);
 }
 }
 
