@@ -58,6 +58,33 @@ unsigned short int Memory::verify()
 
     if (this->solved)
         return 0;   
+    unsigned int acc_state;
+    for (unsigned int i=0; i < digital_solution_len; i++) {
+        // button clicked 
+        acc_state = digitalRead(digital_solution_input[i]);
+        if (last_btn_state[i] != acc_state) {
+            last_btn_state[i] = acc_state;  // update acc state
+            if (acc_state == 0 && button_order[this->solution_state] == i && button_press_time[this->solution_state]== this->acc_pos) {
+                // correct button presed 
+                this->solution_state++;
 
-    
+                char buf[20];
+                sprintf(buf, "State: %d", this->solution_state);
+                Serial.write(buf);
+
+                Serial.write("Correct value");
+                if (this->solution_state == this->digital_solution_input_len) {
+                    this->solved = true;
+                    return 2;  // game solved
+                }
+            } else if (acc_state == 0) {
+                // incorrect button pressed 
+                this->solution_state = 0;
+                return 1;  // incorrect solution
+            }
+        }
+    }
+
+    // no action performed
+    return 0;   
 }
