@@ -32,20 +32,32 @@ Memory::Memory(unsigned int difficulty,
     }
 }
 
+
+void Memory::choose_color(unsigned int col){
+    for(unsigned int i = 0;i<3;i++)
+    {
+        analogWrite(digital_solution_leds[i],this->colors[col][i]);
+    }
+    
+}
+
 void Memory::tick()
 {
     if (solved)
     return;
-
+    if(acc_pos==1 && this->solution_state != acc_pos)
+    {
     for(unsigned int i = 0;i<acc_pos;i++)
     {
         for(unsigned int j = 0;j<=i;j++)
         {
-            digitalWrite(digital_solution_leds[solution[j]],HIGH);
-            delay(100);
-            digitalWrite(digital_solution_leds[solution[j]],LOW);
+            choose_color(solution[j]);
+            delay(1000);
+            choose_color(4);
+            delay(1000);
         }
 
+    }
     }
 }
 
@@ -64,16 +76,22 @@ unsigned short int Memory::verify()
         acc_state = digitalRead(digital_solution_input[i]);
         if (last_btn_state[i] != acc_state) {
             last_btn_state[i] = acc_state;  // update acc state
-            if (acc_state == 0 && button_order[this->solution_state] == i && button_press_time[this->solution_state]== this->acc_pos) {
+            if (acc_state == 0 && solution[this->solution_state] == i) {
                 // correct button presed 
                 this->solution_state++;
-
                 char buf[20];
                 sprintf(buf, "State: %d", this->solution_state);
                 Serial.write(buf);
 
                 Serial.write("Correct value");
-                if (this->solution_state == this->digital_solution_input_len) {
+
+                if (this->solution_state == this->acc_pos)
+                {
+                    this->solution_state = 0;
+                    this->acc_pos++;
+                }
+
+                if (this->solution_state == this->solution_length) {
                     this->solved = true;
                     return 2;  // game solved
                 }
@@ -83,6 +101,7 @@ unsigned short int Memory::verify()
                 return 1;  // incorrect solution
             }
         }
+        
     }
 
     // no action performed
