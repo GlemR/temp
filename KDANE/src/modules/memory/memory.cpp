@@ -23,7 +23,8 @@ Memory::Memory(unsigned int difficulty,
         pinMode(digital_solution_leds[i], OUTPUT);
     }
 
-    // red - 0 ; green - 1 ; blue - 2 ; yellow - 3
+    // red - 0 ; green - 1 ; blue - 2 ; yellow - 3 -- led pins
+    // yellow - 0 ; blue - 1 ; red - 2 ; green - 3 -- button pins
 
     for (unsigned int i=0; i < this->solution_length; i++) {
         // choose random colors for the solution
