@@ -4,9 +4,9 @@
 class Memory{
     private:
         unsigned int difficulty;
-        unsigned int digital_solution_len = 4;
-        unsigned int digital_solution_input[4];
-        unsigned int digital_solution_leds[3];
+        unsigned int digital_pins_len = 4;
+        unsigned int digital_pins_buttons[4];
+        unsigned int digital_pins_leds[3];
         unsigned int last_btn_state[4] = {1, 1, 1, 1};
         
         // internal variables
@@ -27,8 +27,8 @@ class Memory{
         unsigned int solution[8];
         Memory();
         Memory(unsigned int difficulty, 
-                unsigned int digital_solution_input[],
-                unsigned int digital_solution_leds[]);
+                unsigned int digital_pins_buttons[],
+                unsigned int digital_pins_leds[]);
         
                 
         void tick();
