@@ -23,10 +23,10 @@ Passwords::Passwords(unsigned int difficulty,
     }
     // here again the keypad is getting declared twice but it works so it's ok for now
     char keys[4][4] = {
-        {'1', '2', '3', 'A'},
-        {'4', '5', '6', 'B'},
-        {'7', '8', '9', 'C'},
-        {'*', '0', '#', 'D'}
+        {'<', '[', ']', 'i'},
+        {'~', '%', '&', '|'},
+        {'(', '^', '}', 'C'},
+        {'{', '-', ')', '>'}
       };
       byte colPins[] = {6, 7, 8, 9}; 
       byte rowPins[] = {5, 4, 3, 2};

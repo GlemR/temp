@@ -28,7 +28,7 @@ public:
     bool waiting = false;
     bool resta=false;
     unsigned int solution_length = 8;
-    char solution[9] = "15A63*C2";
+    char solution[9] = "~&[}(]i>";
 
     // caharcters used in the keypad
     // to be fixed
