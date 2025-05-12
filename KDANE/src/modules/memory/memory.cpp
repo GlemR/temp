@@ -45,26 +45,27 @@ void Memory::tick()
 {
     if (solved)
     return;
-    if(acc_pos==1 && this->solution_state != acc_pos)
-    {
-    for(unsigned int i = 0;i<acc_pos;i++)
-    {
-        for(unsigned int j = 0;j<=i;j++)
+    if (!waiting){
+        for (unsigned int i = 0;i<acc_pos;i++)
         {
-            choose_color(solution[j]);
-            delay(1000);
-            choose_color(4);
-            delay(1000);
-        }
+            for(unsigned int j = 0;j<=i;j++)
+            {
+                choose_color(solution[j]);
+                delay(1000);
+                choose_color(4);
+                delay(1000);
+            }
 
+        }
     }
-    }
+    if (acc_pos != 1)
+        waiting = true;
 }
 
 unsigned short int Memory::verify()
 {
      // return:
-    // 0 - game not solved
+    // 0 - no actions taken
     // 1 - incorrect solution
     // 2 - game solved
 
@@ -98,6 +99,7 @@ unsigned short int Memory::verify()
             } else if (acc_state == 0) {
                 // incorrect button pressed 
                 this->solution_state = 0;
+                this->acc_pos = 1;
                 return 1;  // incorrect solution
             }
         }

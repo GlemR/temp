@@ -17,7 +17,7 @@ class Memory{
         unsigned int soluion_poss[4] = {0,1,2,3};
         unsigned int colors[5][3]={{255,0,0},{0,255,0},{0,0,255},{255,255,0},{0,0,0}};
 
-
+        bool waiting = false;
         unsigned int solution_state = 0;
 
         void choose_color(unsigned int col);
