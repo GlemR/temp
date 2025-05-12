@@ -28,15 +28,15 @@ public:
     bool waiting = false;
     bool resta=false;
     unsigned int solution_length = 8;
-    char solution[9] = "~&[}(]i>";
+    char solution[9] = "%&[}(]i>";
 
     // caharcters used in the keypad
     // to be fixed
     char keys[4][4] = {
-        {'1', '2', '3', 'A'},
-        {'4', '5', '6', 'B'},
-        {'7', '8', '9', 'C'},
-        {'*', '0', '#', 'D'}
+        {'<', '[', ']', 'i'},
+        {'~', '%', '&', '|'},
+        {'(', '^', '}', 'C'},
+        {'{', '-', ')', '>'}
       };
     byte colPins[4] = {6, 7, 8, 9}; 
     byte rowPins[4] = {5, 4, 3, 2};
