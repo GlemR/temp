@@ -4,9 +4,9 @@
 class Memory{
     private:
         unsigned int difficulty;
-        unsigned int digital_solution_len = 4;
-        unsigned int digital_solution_input[4];
-        unsigned int digital_solution_leds[4];
+        unsigned int digital_pins_len = 4;
+        unsigned int digital_pins_buttons[4];
+        unsigned int digital_pins_leds[3];
         unsigned int last_btn_state[4] = {1, 1, 1, 1};
         
         // internal variables
@@ -15,17 +15,20 @@ class Memory{
         unsigned int internal_counter = 0;
         unsigned int permutation_rounds = 24;
         unsigned int soluion_poss[4] = {0,1,2,3};
+        unsigned int colors[5][3]={{255,0,0},{0,255,0},{0,0,255},{255,255,0},{0,0,0}};
 
-
+        bool waiting = false;
         unsigned int solution_state = 0;
+
+        void choose_color(unsigned int col);
     public:
         bool solved;
         unsigned int solution_length = 8;
         unsigned int solution[8];
         Memory();
         Memory(unsigned int difficulty, 
-                unsigned int digital_solution_input[],
-                unsigned int digital_solution_leds[]);
+                unsigned int digital_pins_buttons[],
+                unsigned int digital_pins_leds[]);
         
                 
         void tick();

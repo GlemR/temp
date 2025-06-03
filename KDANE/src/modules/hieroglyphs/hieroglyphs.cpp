@@ -113,7 +113,7 @@ void Hieroglyphs::tick() {
 
 unsigned short int Hieroglyphs::verify() {
     // return:
-    // 0 - game not solved
+    // 0 - no actions performed
     // 1 - incorrect solution
     // 2 - game solved
 
@@ -150,6 +150,6 @@ unsigned short int Hieroglyphs::verify() {
         }
     }
 
-    // no action performed
+    // no actions performed
     return 0;   
 }
